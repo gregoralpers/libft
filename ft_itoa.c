@@ -6,7 +6,7 @@
 /*   By: galpers <galpers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:52:04 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/21 15:15:26 by galpers          ###   ########.fr       */
+/*   Updated: 2022/02/21 17:49:20 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_itoa(int nbr)
 	if (nbr == -2147483648)
 		return (ft_strdup("-2147483648"));
 	len = length(nbr);
-	number = (char *)malloc(sizeof (char *) * len);
+	number = (char *)malloc(sizeof (char) * (len + 1));
 	if (number == NULL)
 		return (NULL);
 	if (nbr < 0)

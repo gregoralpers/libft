@@ -6,28 +6,30 @@
 /*   By: galpers <galpers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:45:31 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/21 17:03:12 by galpers          ###   ########.fr       */
+/*   Updated: 2022/02/21 17:43:30 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strldup(const char *src, int pos, int size)
+static int	str_words(char const *str, char sep)
 {
-	char	*str;
-	int		i;
+	int	i;
+	int	result;
 
-	str = (char *)malloc(sizeof(char) *(size + 1));
-	if (str == NULL)
-		return (0);
 	i = 0;
-	while (i < size)
+	result = 0;
+	while (str[i])
 	{
-		str[i] = src[pos + i];
-		i++;
+		while (str[i] == sep && str[i])
+			i++;
+		if (str[i] == '\0')
+			break ;
+		while (str[i] != sep && str[i])
+			i++;
+		result++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (result);
 }
 
 static int	ft_is_char(const char *src, int pos, char c)
@@ -50,6 +52,24 @@ static int	ft_wrdlen(const char *str, int pos, char c)
 	return (i);
 }
 
+static char	*ft_strldup(const char *src, int pos, int size)
+{
+	char	*str;
+	int		i;
+
+	str = (char *)malloc(sizeof(char) *(size + 1));
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (i < size)
+	{
+		str[i] = src[pos + i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
@@ -59,7 +79,7 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	split = (char **)malloc(sizeof (char *) * (ft_strlen(s) + 1));
+	split = (char **)malloc(sizeof (char *) * (str_words(s, c) + 1));
 	if (split == NULL)
 		return (0);
 	while (i < ft_strlen(s))
