@@ -6,7 +6,7 @@
 /*   By: galpers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:52:04 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/14 23:52:15 by galpers          ###   ########.fr       */
+/*   Updated: 2022/02/21 11:20:42 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_itoa(int nbr)
 		nb = -nb;
 		k = 1;
 	}
-	number[len] == '\0';
+	number[len] = '\0';
 	while (len > k)
 	{
 		number[len - 1] = (nb % 10) + 48;

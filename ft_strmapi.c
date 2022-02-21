@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galpers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/14 23:46:58 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/21 12:21:44 by galpers          ###   ########.fr       */
+/*   Created: 2022/02/18 22:02:26 by galpers           #+#    #+#             */
+/*   Updated: 2022/02/18 22:02:40 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long int	ft_atoi(const char *str)
-{ 
-	int	res;
-	int	minus;
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char	*new;
+	int		i;
 
-	res = 0;
-	minus = 1;
-	while (*str != '\0' && ft_strchr("\t\n\v\f\r ", *str) != NULL)
-		str++;
-	if (*str != '\0' && ft_strchr("+-", *str) != NULL)
-		if (*str++ == '-')
-			minus *= -1;
-	while (*str != '\0' && ft_strchr("0123456789", *str) != NULL)
+	new = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (new == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
 	{
-		res *= 10;
-		res += *str - '0';
-		str++;
+		new[i] = f(i, s[i]);
+		i++;
 	}
-	return (res * minus);
+	new[i] = '\0';
+	return (new);
 }
