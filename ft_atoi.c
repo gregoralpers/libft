@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galpers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: galpers <galpers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:46:58 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/21 12:21:44 by galpers          ###   ########.fr       */
+/*   Updated: 2022/02/21 15:16:32 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 long int	ft_atoi(const char *str)
-{ 
+{
 	int	res;
 	int	minus;
 

@@ -3,32 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galpers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: galpers <galpers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:52:04 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/21 11:20:42 by galpers          ###   ########.fr       */
+/*   Updated: 2022/02/21 15:15:26 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	length(long nbr)
+static int	length(int nbr)
 {
 	int	i;
-	
+
 	i = 0;
 	if (nbr == 0)
 	{
-		return(1);
-
+		return (1);
 	}
-
 	if (nbr < 0)
 	{
 		i = 1;
-		nbr =-nbr;
+		nbr = -nbr;
 	}
-	
 	while (nbr > 0)
 	{
 		nbr = nbr / 10;
@@ -40,31 +37,28 @@ static int	length(long nbr)
 char	*ft_itoa(int nbr)
 {
 	int		len;
-	char 	*number;
-	long	nb;
+	char	*number;
 	int		k;
 
 	k = 0;
-	nb = nbr;
-	len = length(nb); 
+	if (nbr == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = length(nbr);
 	number = (char *)malloc(sizeof (char *) * len);
 	if (number == NULL)
 		return (NULL);
-	if (nbr == 0)
-			number[0] = 48;
-	if (nb < 0)
+	if (nbr < 0)
 	{
 		number [0] = '-';
-		nb = -nb;
 		k = 1;
 	}
 	number[len] = '\0';
+	nbr = ((nbr < 0) * -2 + 1) * nbr;
 	while (len > k)
 	{
-		number[len - 1] = (nb % 10) + 48;
-		nb = nb / 10;
+		number[len - 1] = (nbr % 10) + 48;
+		nbr = nbr / 10;
 		len--;
 	}
-
 	return (number);
 }

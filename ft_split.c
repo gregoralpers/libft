@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galpers <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: galpers <galpers@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:45:31 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/21 11:14:52 by galpers          ###   ########.fr       */
+/*   Updated: 2022/02/21 17:03:12 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	ft_is_char(const char *src, int pos, char c)
 	int	i;
 
 	i = 0;
-	
 	if (src[pos] == c)
 		return (0);
 	return (1);
@@ -60,7 +59,7 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	split = (char **)malloc(sizeof (char) * (ft_strlen(s) + 1));
+	split = (char **)malloc(sizeof (char *) * (ft_strlen(s) + 1));
 	if (split == NULL)
 		return (0);
 	while (i < ft_strlen(s))
