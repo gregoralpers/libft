@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galpers <galpers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galpers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 15:25:03 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/21 15:25:31 by galpers          ###   ########.fr       */
+/*   Updated: 2022/02/23 18:38:22 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_list;
-	t_list	*temp;
+	t_list	*new;
+	t_list	*first;
 
-	if (lst == NULL || f == NULL || del == NULL)
-		return (NULL);
-	new_list = ft_lstnew(f(lst->content));
-	temp = new_list;
-	while (lst->next != NULL)
+	first = NULL;
+	while (lst)
 	{
-		lst = lst->next;
-		temp->next = ft_lstnew(f(lst->content));
-		temp = temp->next;
-		if (temp == NULL)
+		new = ft_lstnew(f(lst->content));
+		if (new == NULL)
 		{
-			ft_lstclear(&new_list, del);
-			return (NULL);
+			ft_lstclear(&first, del);
+			return (0);
 		}
+		ft_lstadd_back(&first, new);
+		lst = lst->next;
 	}
-	temp->next = NULL;
-	return (new_list);
+	return (first);
 }

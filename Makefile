@@ -43,8 +43,8 @@ SRCS_BONUS = ft_lstnew.c \
 			ft_lstiter.c \
 			ft_lstmap.c
 
-OBJS	= ${SRCS:.c=.o}
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
+OBJS	= $(SRCS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 INCDIR	= includes
 NAME	= libft.a
@@ -54,22 +54,22 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 
-all:	${NAME}
+$(NAME):$(OBJS)
+		$(LIBC) $(NAME) $(OBJS)
 
-${NAME}:${OBJS}
-		${LIBC} ${NAME} ${OBJS}
+all:	$(NAME)
 
-bonus:	${OBS} ${OBJS_BONUS}
-		${LIBC} ${NAME} ${OBJS_BONUS} 	
+bonus:	$(OBS) $(OBJS_BONUS)
+		$(LIBC) $(NAME) $(OBJS_BONUS) 	
 
 %.o:	%.c
-		${CC} ${CFLAGS} -c $< -o $@ -I ${INCDIR}
+		$(CC) $(CFLAGS) -c $< -o $@ -I $(INCDIR)
 
 clean:
-		${RM} ${OBJS} ${OBJS_BONUS}
+		$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-		${RM} ${NAME}
+		$(RM) $(NAME)
 
 re:		fclean all
 

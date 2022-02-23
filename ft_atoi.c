@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galpers <galpers@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galpers <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:46:58 by galpers           #+#    #+#             */
-/*   Updated: 2022/02/21 15:16:32 by galpers          ###   ########.fr       */
+/*   Updated: 2022/02/23 18:29:03 by galpers          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long int	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int	res;
-	int	minus;
+	long long	res;
+	int			minus;
 
 	res = 0;
 	minus = 1;
@@ -29,6 +29,10 @@ long int	ft_atoi(const char *str)
 		res *= 10;
 		res += *str - '0';
 		str++;
+		if ((res * minus) > 2147483647)
+			return (-1);
+		if ((res * minus) < -2147483648)
+			return (0);
 	}
 	return (res * minus);
 }
